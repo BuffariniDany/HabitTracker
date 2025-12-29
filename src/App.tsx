@@ -1,4 +1,3 @@
-import React from 'react'
 import { HabitList } from '@domains/habits/components/HabitList'
 import './App.css'
 

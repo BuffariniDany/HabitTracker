@@ -1,4 +1,4 @@
-import type { Habit, HabitId, HabitName, ValidationResult, HabitOperations } from '../types'
+import type { Habit, HabitId, HabitName, ValidationResult } from '../types'
 
 // Generate unique ID for habits
 function generateHabitId(): HabitId {
