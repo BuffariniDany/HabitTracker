@@ -93,6 +93,26 @@ body {
   line-height: 1.5;
 }
 
+.app-footer a {
+  color: var(--primary-purple-light);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.app-footer a:hover {
+  color: var(--pure-white);
+  border-bottom-color: var(--primary-purple-light);
+  text-shadow: 0 0 8px rgba(139, 92, 246, 0.6);
+}
+
+.app-footer a:focus {
+  outline: 2px solid var(--primary-purple);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 /* Button styles */
 .btn {
   padding: 0.75rem 1.5rem;

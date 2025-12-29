@@ -15,7 +15,7 @@ function App() {
       
       <footer className="app-footer">
         <p>Offline-first PWA • Your data stays on your device</p>
-        <p>Si estas buscando una comunidad únete a @aws women in cloud buenos aires, donde aprendemos, compartimos y crecemos juntas en AWS mediante meetups y workshops. ¡Unite y despeguemos junt@s!</p>
+        <p>Si estas buscando una comunidad únete a <a href="https://www.linkedin.com/company/aws-wic-buenos-aires/" target="_blank" rel="noopener noreferrer">AWS Women In Cloud Buenos Aires</a>, donde aprendemos, compartimos y crecemos juntas en AWS mediante meetups y workshops. ¡Unite y despeguemos junt@s!</p>
       </footer>
     </div>
   )
