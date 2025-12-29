@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { HabitListItem } from './HabitListItem'
 import { HabitForm } from './HabitForm'
+import { NotificationSettings } from '../../notifications/components/NotificationSettings'
 import { createHabit, updateHabitName, deleteHabit } from '../business/habitOperations'
 import { habitStorage } from '../data/habitStorage'
 import { checkInStorage } from '../../check-ins/data/checkInStorage'
 import { createCheckIn, getTodayDate } from '../../check-ins/business/checkInOperations'
 import { calculateStreakData } from '../../streaks/business/streakCalculations'
+import { 
+  scheduleInactivityCheck, 
+  updateLastCheckInTime,
+  requestPermission,
+  isNotificationSupported
+} from '../../notifications/business/notificationOperations'
 import type { Habit } from '../types'
 import type { StreakData } from '../../streaks/types'
 
@@ -20,11 +27,29 @@ export const HabitList: React.FC = () => {
   const [showForm, setShowForm] = useState(false)
   const [editingHabit, setEditingHabit] = useState<Habit | null>(null)
   const [loading, setLoading] = useState(true)
+  const [showNotificationSettings, setShowNotificationSettings] = useState(false)
 
   // Load habits and their progress data
   useEffect(() => {
     loadHabitsWithProgress()
+    initializeNotifications()
   }, [])
+
+  const initializeNotifications = async () => {
+    if (isNotificationSupported()) {
+      // Schedule inactivity checks
+      scheduleInactivityCheck()
+      
+      // Auto-request permission after user has created their first habit
+      const habits = await habitStorage.getHabits()
+      if (habits.length > 0 && Notification.permission === 'default') {
+        // Wait a bit before asking for permission to not be intrusive
+        setTimeout(() => {
+          requestPermission()
+        }, 5000)
+      }
+    }
+  }
 
   const loadHabitsWithProgress = async () => {
     try {
@@ -143,6 +168,11 @@ export const HabitList: React.FC = () => {
           : item
       ))
       
+      // Update last check-in time for notifications when checking in
+      if (newCheckInStatus) {
+        await updateLastCheckInTime()
+      }
+      
     } catch (error) {
       console.error('Failed to toggle check-in:', error)
       alert('Failed to update check-in. Please try again.')
@@ -195,45 +225,63 @@ export const HabitList: React.FC = () => {
           <p>No habits yet. Create your first habit to get started!</p>
         </div>
       ) : (
-        <div className="habit-sections">
-          {pendingToday.length > 0 && (
-            <div className="habit-section">
-              <h3 className="section-title">📋 Today's Goals</h3>
-              <div className="habit-list">
-                {pendingToday.map(item => (
-                  <HabitListItem
-                    key={item.habit.id}
-                    habit={item.habit}
-                    streakData={item.streakData}
-                    isCheckedInToday={item.isCheckedInToday}
-                    onEdit={handleEditHabit}
-                    onDelete={handleDeleteHabit}
-                    onToggleCheckIn={handleToggleCheckIn}
-                  />
-                ))}
+        <>
+          <div className="habit-sections">
+            {pendingToday.length > 0 && (
+              <div className="habit-section">
+                <h3 className="section-title">📋 Today's Goals</h3>
+                <div className="habit-list">
+                  {pendingToday.map(item => (
+                    <HabitListItem
+                      key={item.habit.id}
+                      habit={item.habit}
+                      streakData={item.streakData}
+                      isCheckedInToday={item.isCheckedInToday}
+                      onEdit={handleEditHabit}
+                      onDelete={handleDeleteHabit}
+                      onToggleCheckIn={handleToggleCheckIn}
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
+            )}
+            
+            {completedToday.length > 0 && (
+              <div className="habit-section">
+                <h3 className="section-title">✅ Completed Today</h3>
+                <div className="habit-list">
+                  {completedToday.map(item => (
+                    <HabitListItem
+                      key={item.habit.id}
+                      habit={item.habit}
+                      streakData={item.streakData}
+                      isCheckedInToday={item.isCheckedInToday}
+                      onEdit={handleEditHabit}
+                      onDelete={handleDeleteHabit}
+                      onToggleCheckIn={handleToggleCheckIn}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
           
-          {completedToday.length > 0 && (
-            <div className="habit-section">
-              <h3 className="section-title">✅ Completed Today</h3>
-              <div className="habit-list">
-                {completedToday.map(item => (
-                  <HabitListItem
-                    key={item.habit.id}
-                    habit={item.habit}
-                    streakData={item.streakData}
-                    isCheckedInToday={item.isCheckedInToday}
-                    onEdit={handleEditHabit}
-                    onDelete={handleDeleteHabit}
-                    onToggleCheckIn={handleToggleCheckIn}
-                  />
-                ))}
+          {/* Notification Settings */}
+          <div className="notification-settings-container">
+            <button 
+              onClick={() => setShowNotificationSettings(!showNotificationSettings)}
+              className="btn btn-secondary notification-toggle-btn"
+            >
+              🔔 {showNotificationSettings ? 'Ocultar' : 'Configurar'} Notificaciones
+            </button>
+            
+            {showNotificationSettings && (
+              <div className="notification-settings-panel">
+                <NotificationSettings />
               </div>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
+        </>
       )}
     </div>
   )
