@@ -408,3 +408,263 @@ body {
     --text-muted: #E2E8F0;
   }
 }
+
+/* Check-in Button Styles */
+.check-in-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 100px;
+  justify-content: center;
+}
+
+.check-in-btn.not-checked-in {
+  background: linear-gradient(135deg, var(--dark-navy-light) 0%, var(--dark-navy) 100%);
+  color: var(--text-light);
+  border: 2px solid var(--primary-purple);
+}
+
+.check-in-btn.not-checked-in:hover {
+  background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-purple-hover) 100%);
+  color: var(--pure-white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+.check-in-btn.checked-in {
+  background: linear-gradient(135deg, var(--success-green) 0%, #059669 100%);
+  color: var(--pure-white);
+  border: 2px solid var(--success-green);
+}
+
+.check-in-btn.checked-in:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-1px);
+}
+
+.check-in-btn.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.check-in-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.check-in-icon {
+  font-size: 1.2rem;
+}
+
+.check-in-text {
+  font-size: 0.85rem;
+}
+
+/* Streak Display Styles */
+.streak-display {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.streak-display.compact {
+  gap: 0.5rem;
+}
+
+.streak-display.compact .current-streak {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary-purple-light);
+}
+
+.streak-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.streak-icon {
+  font-size: 1.2rem;
+}
+
+.streak-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.streak-number {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--pure-white);
+  line-height: 1;
+}
+
+.streak-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Updated Habit Item Styles */
+.habit-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(51, 65, 85, 0.6);
+  border-radius: 12px;
+  border-left: 4px solid var(--primary-purple);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.habit-item.completed-today {
+  border-left-color: var(--success-green);
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.habit-item:hover {
+  background: rgba(51, 65, 85, 0.8);
+  border-color: var(--primary-purple);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.2);
+}
+
+.habit-main-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.habit-progress {
+  flex-shrink: 0;
+}
+
+.habit-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.habit-management {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Habit Sections */
+.habit-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.habit-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.section-title {
+  color: var(--pure-white);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid var(--primary-purple);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Progress Summary */
+.progress-summary {
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.progress-summary h3 {
+  color: var(--pure-white);
+  margin-bottom: 0.5rem;
+}
+
+.progress-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.progress-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.progress-stat-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-purple-light);
+}
+
+.progress-stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* Responsive Updates */
+@media (max-width: 768px) {
+  .habit-main-content {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .habit-actions {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .habit-management {
+    justify-content: center;
+  }
+  
+  .check-in-btn {
+    align-self: center;
+    min-width: 120px;
+  }
+  
+  .progress-stats {
+    gap: 1rem;
+  }
+  
+  .streak-display {
+    justify-content: center;
+  }
+}
