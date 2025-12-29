@@ -62,8 +62,8 @@ body {
 }
 
 .header-icon {
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
   filter: drop-shadow(0 2px 8px rgba(139, 92, 246, 0.3));
 }
@@ -382,8 +382,8 @@ body {
   }
   
   .header-icon {
-    width: 28px;
-    height: 28px;
+    width: 22px;
+    height: 22px;
   }
   
   .habit-item {
