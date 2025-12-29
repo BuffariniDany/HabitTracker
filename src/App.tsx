@@ -6,7 +6,12 @@ function App() {
     <div className="app">
       <header className="app-header">
         <div className="header-title">
-          <img src="/HabitTracker/aws-wic-icon.png" alt="AWS Women in Cloud Buenos Aires" className="header-icon" />
+          <img 
+            src="/HabitTracker/aws-wic-icon.png" 
+            alt="AWS Women in Cloud Buenos Aires" 
+            className="header-icon"
+            aria-label="AWS Women in Cloud Buenos Aires"
+          />
           <h1>Habit Tracker</h1>
         </div>
         <p>Build better habits, one day at a time</p>

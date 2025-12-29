@@ -57,15 +57,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 14px; /* 12-16px spacing as per guidelines */
   margin-bottom: 0.5rem;
 }
 
 .header-icon {
-  width: 24px;
-  height: 24px;
+  width: 32px; /* Desktop height: 32-40px */
+  height: 32px;
   object-fit: contain;
-  filter: drop-shadow(0 2px 8px rgba(139, 92, 246, 0.3));
+  opacity: 0.92; /* Slight opacity reduction for visual weight */
+  filter: saturate(0.9); /* Subtle desaturation */
+  background: transparent; /* Ensure transparent background */
 }
 
 .app-header h1 {
@@ -378,12 +380,12 @@ body {
   }
   
   .header-title {
-    gap: 0.75rem;
+    gap: 12px; /* Maintain proper spacing on mobile */
   }
   
   .header-icon {
-    width: 22px;
-    height: 22px;
+    width: 28px; /* Mobile height: 28-32px */
+    height: 28px;
   }
   
   .habit-item {
