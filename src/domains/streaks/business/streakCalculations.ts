@@ -1,5 +1,4 @@
 import type { StreakData, StreakDay, HabitId } from '../types'
-import type { CheckIn } from '../../check-ins/types'
 import { checkInStorage } from '../../check-ins/data/checkInStorage'
 import { calculateCurrentStreak, calculateLongestStreak, getTodayDate } from '../../check-ins/business/checkInOperations'
 
