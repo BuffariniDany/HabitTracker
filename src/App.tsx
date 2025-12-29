@@ -5,7 +5,10 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Habit Tracker</h1>
+        <div className="header-title">
+          <img src="/HabitTracker/aws-wic-icon.png" alt="AWS Women in Cloud Buenos Aires" className="header-icon" />
+          <h1>Habit Tracker</h1>
+        </div>
         <p>Build better habits, one day at a time</p>
       </header>
       
